@@ -10,7 +10,7 @@ class Department {
             this.id = dep._id;
             this.name = dep.name;
             this.updateDate = dep.updateDate && (new Date(dep.updateDate)).format(main_1.CONST_PARAMS.FORMAT_DATE_TIME);
-            this.createDate = dep.updateDate && (new Date(dep.createDate)).format(main_1.CONST_PARAMS.FORMAT_DATE_TIME);
+            this.createDate = dep.createDate && (new Date(dep.createDate)).format(main_1.CONST_PARAMS.FORMAT_DATE_TIME);
         }
     }
 }

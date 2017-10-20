@@ -39,7 +39,9 @@ class UserInfo {
             this.title = user.title;
             this.avatar = user.avatar;
             this.gender = user.gender;
-            this.department = new Idepartment_1.Department(user.department);
+            if (user.department) {
+                this.department = new Idepartment_1.Department(user.department);
+            }
             if (user.birthday) {
                 (this.birthday = (new Date(user.birthday)).format(main_1.CONST_PARAMS.FORMAT_DATE));
             }

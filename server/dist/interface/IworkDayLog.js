@@ -4,7 +4,9 @@ const main_1 = require("../configs/main");
 class WorkDayLog {
     constructor(work, needUser = true) {
         this.id = work.id || work._id;
-        this.date = (new Date(work.date)).format(main_1.CONST_PARAMS.FORMAT_DATE);
+        if (work.date) {
+            this.date = (new Date(work.date)).format(main_1.CONST_PARAMS.FORMAT_DATE);
+        }
         this.completed = work.completed;
         this.plan = work.plan;
         this.progress = work.progress;

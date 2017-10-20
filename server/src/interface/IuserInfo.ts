@@ -86,7 +86,9 @@ export class UserInfo {
       this.title = user.title;
       this.avatar = user.avatar;
       this.gender = user.gender;
-      this.department = new Department(user.department);
+      if (user.department) {
+        this.department = new Department(user.department);
+      }
       if (user.birthday) {
         (this.birthday = (new Date(user.birthday)).format(CONST_PARAMS.FORMAT_DATE));
       }

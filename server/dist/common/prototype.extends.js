@@ -12,18 +12,19 @@ if (!Date.prototype.format) {
             'q+': Math.floor((this.getMonth() + 3) / 3),
             'S+': this.getMilliseconds() //毫秒
         };
-        for (const k in o) {
+        for (const k of Object.keys(o)) {
+            const value = o[k];
             if (new RegExp('(' + k + ')').test(fmt)) {
                 if (k === 'y+') {
-                    fmt = fmt.replace(RegExp.$1, ('' + o[k]).substr(4 - RegExp.$1.length));
+                    fmt = fmt.replace(RegExp.$1, ('' + value).substr(4 - RegExp.$1.length));
                 }
                 else if (k === 'S+') {
                     let lens = RegExp.$1.length;
                     lens = lens === 1 ? 3 : lens;
-                    fmt = fmt.replace(RegExp.$1, ('00' + o[k]).substr(('' + o[k]).length - 1, lens));
+                    fmt = fmt.replace(RegExp.$1, ('00' + value).substr(('' + value).length - 1, lens));
                 }
                 else {
-                    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)));
+                    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (value) : (('00' + value).substr(('' + value).length)));
                 }
             }
         }

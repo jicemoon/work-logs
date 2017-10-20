@@ -18,13 +18,15 @@ export class WorkDayLog {
   plan?: string;
   progress?: string;
   //user: UserInfo;
-  user?: { id, name?, title?, department?, departmentId?};
+  user?: { id: string, name?: string, title?: string, department?: string, departmentId?: string};
   updateDate?: string;
   createDate?: string;
 
   constructor (work: IWorkDayLogModel, needUser = true) {
     this.id = work.id || work._id;
-    this.date = (new Date(work.date)).format(CONST_PARAMS.FORMAT_DATE);
+    if (work.date) {
+      this.date = (new Date(work.date)).format(CONST_PARAMS.FORMAT_DATE);
+    }
     this.completed = work.completed;
     this.plan = work.plan;
     this.progress = work.progress;

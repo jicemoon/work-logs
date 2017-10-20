@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-
+import './../../server/src/common/prototype.extends';
 import './scss/main.scss';
 
 import { IndexComponent } from './components/index/index';

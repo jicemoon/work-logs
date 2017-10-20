@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"worklogs.userinfos"},{"v":2,"unique":true,"key":{"loginName":1},"name":"loginName_1","ns":"worklogs.userinfos","background":true}]}

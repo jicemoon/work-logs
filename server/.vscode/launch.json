@@ -25,12 +25,6 @@
       "runtimeExecutable": null,
       "sourceMaps": true,
       "stopOnEntry": false
-    },
-    {
-        "name": "Attach",
-        "type": "node",
-        "request": "attach",
-        "port": 5858
     }
   ]
 }

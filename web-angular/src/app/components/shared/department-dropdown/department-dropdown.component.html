@@ -1,0 +1,11 @@
+<div class="btn-group">
+  <button class="btn btn-default dropdown-toggle" type="button" id="searchItemDropDownMenu" data-toggle="dropdown" aria-haspopup="false"
+    aria-expanded="true">
+        <span>{{currentDepartment && currentDepartment.name}}</span><i class="caret"></i>
+      </button>
+  <ul class="dropdown-menu" aria-labelledby="searchItemDropDownMenu">
+    <li *ngFor="let item of departmentList" (click)="dropdownClickHandle(item)">{{ item.name }}</li>
+  </ul>
+</div>
+<app-alert #myAlert></app-alert>
+<app-confirm-dialog #myDialog></app-confirm-dialog>

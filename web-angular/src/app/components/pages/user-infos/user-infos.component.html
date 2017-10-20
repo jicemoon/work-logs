@@ -1,0 +1,104 @@
+<div class="user-infos">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-7">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong>个人资料</strong></h3>
+        </div>
+        <div class="panel-body">
+          <form class="form-horizontal" [formGroup]="infoForm" novalidate (submit)="submit($event)" autocomplete="false">
+            <div class="form-group ">
+              <label class="col-xs-12 col-sm-4 col-md-3 control-label">账号</label>
+              <div class="col-xs-12 col-sm-8 col-md-9">
+                <input type="text" class="form-control" formControlName="loginName" name="loginName" id="loginName" readonly="readonly">
+              </div>
+            </div>
+            <div class="form-group ">
+              <label class="col-xs-12 col-sm-4 col-md-3 control-label">权限</label>
+              <div class="col-xs-12 col-sm-8 col-md-9">
+                <input type="text" class="form-control" formControlName="level" name="level" id="level" readonly="readonly">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-xs-12 col-sm-4 col-md-3 control-label">昵称</label>
+              <div class="col-xs-12 col-sm-8 col-md-9">
+                <input type="text" class="form-control" formControlName="nickname" class="form-control" id="nickname" name="nickname" placeholder="昵称">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-xs-12 col-sm-4 col-md-3 control-label">所在部门</label>
+              <div class="col-xs-12 col-sm-8 col-md-9">
+                <input type="text" class="form-control" formControlName="department" class="form-control" readonly id="department" name="department">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-xs-12 col-sm-4 col-md-3 control-label">职称</label>
+              <div class="col-xs-12 col-sm-8 col-md-9">
+                <input type="text" class="form-control" formControlName="title" class="form-control" id="title" name="title" placeholder="职称">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-xs-12 col-sm-4 col-md-3 control-label">头像地址</label>
+              <div class="col-xs-12 col-sm-8 col-md-9">
+                <input type="text" class="form-control" formControlName="avatar" class="form-control" id="avatar" name="avatar" placeholder="头像地址">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-xs-12 col-sm-4 col-md-3 control-label">邮箱</label>
+              <div class="col-xs-12 col-sm-8 col-md-9">
+                <input type="text" class="form-control" formControlName="email" class="form-control" id="email" name="email" placeholder="邮箱">
+              </div>
+            </div>
+            <div class="form-group text-center">
+              <button type="submit" class="btn btn-success" [disabled]="infoForm.invalid">提交</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <button type="button" class="btn btn-danger" (click)="resetInput()">重置</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-5">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong>修改密码</strong></h3>
+        </div>
+        <div class="panel-body">
+          <form class="form-horizontal" [formGroup]="passwordForm" novalidate (submit)="modifyPW($event)" autocomplete="false">
+            <div class="form-group ">
+              <label class="col-xs-12 col-sm-4 col-md-3 control-label">旧密码</label>
+              <div class="col-xs-12 col-sm-8 col-md-9">
+                <input type="password" class="form-control" formControlName="oldPassword" name="oldPassword" id="oldPassword" placeholder="旧密码">
+              </div>
+              <div *ngIf="inputInvalid('oldPassword')" class="alert-danger">
+                旧密码不能为空
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-xs-12 col-sm-4 col-md-3 control-label">新密码</label>
+              <div class="col-xs-12 col-sm-8 col-md-9">
+                <input type="password" class="form-control" formControlName="newPassword" id="newPassword" name="newPassword" placeholder="新密码">
+                <div *ngIf="inputInvalid('newPassword')" class="alert-danger">
+                  密码必须为6-18位的字符(至少同时包括数字和字母), 新密码不能和旧密码相同
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-xs-12 col-sm-4 col-md-3 control-label">确认密码</label>
+              <div class="col-xs-12 col-sm-8 col-md-9">
+                <input type="password" class="form-control" formControlName="rePassword" id="rePassword" name="rePassword" placeholder="确认密码">
+                <div *ngIf="inputInvalid('rePassword')" class="alert-danger">
+                  确认密码必须与新密码相同
+                </div>
+              </div>
+            </div>
+            <div class="form-group text-center">
+              <button type="submit" class="btn btn-success" [disabled]="passwordForm.invalid">修改密码</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-alert #myAlert></app-alert>
+<app-confirm-dialog #myDialog></app-confirm-dialog>

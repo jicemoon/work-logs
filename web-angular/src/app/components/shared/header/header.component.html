@@ -1,0 +1,129 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" routerLink="/">冰月日志</a>
+      <button type="button" (click)="openMenu()" class="navbar-toggle collapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <ul class="nav navbar-nav navbar-right hidden-xs">
+      <li routerLinkActive="active">
+        <a routerLink="/allLogs">
+          <span class="glyphicon glyphicon-th"></span>
+          <span class="hidden-sm">所有日志</span>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="/myLogs">
+          <span class="glyphicon glyphicon-list-alt"></span>
+          <span class="hidden-sm">我的记录</span>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="/addDayLog">
+          <span class="glyphicon glyphicon-pencil"></span>
+          <span class="hidden-sm">写日志</span>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="/addMonthReport">
+          <span class="glyphicon glyphicon-paperclip"></span>
+          <span class="hidden-sm">写月报</span>
+        </a>
+      </li>
+      <li *ngIf="userLevel < 2" routerLinkActive="active">
+        <a routerLink="/userList">
+          <span class="glyphicon glyphicon-star"></span>
+          <span class="hidden-sm">用户列表</span>
+        </a>
+      </li>
+      <li *ngIf="userLevel === 0" routerLinkActive="active">
+        <a routerLink="/departmentList">
+          <span class="glyphicon glyphicon-th-list"></span>
+          <span class="hidden-sm">部门列表</span>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="/userInfos">
+          <span class="glyphicon glyphicon-info-sign"></span>
+          <span class="hidden-sm">{{nickName}}</span>
+        </a>
+      </li>
+      <li>
+        <a style="color: #ff6666;" href="javascript:;" (click)="logoutHandle()">
+          <span class="glyphicon glyphicon-log-out"></span>
+          <span class="hidden-sm">退出登录</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="mask" (click)="hideMenu()" [class.active]="displaySideMenu"></div>
+<div class="panel panel-primary side-container" (click)="hideMenu()" [class.active]="displaySideMenu">
+  <div class="panel-heading">
+    <h3 class="panel-title">登录帐号: <strong>{{loginName}}</strong></h3>
+  </div>
+  <div class="panel-body">
+    <div class="user-info text-center">
+      <div class="avatar">
+        <img src="../../../assets/images/login-bg.jpg" alt="" class="img-circle">
+      </div>
+      <div class="nickname">{{nickName}}</div>
+    </div>
+    <div class="menu">
+      <ul>
+        <li routerLinkActive="active">
+          <a routerLink="/allLogs">
+            <span class="glyphicon glyphicon-th"></span>
+            <span class="">所有日志</span>
+          </a>
+        </li>
+        <li routerLinkActive="active">
+          <a routerLink="/myLogs">
+            <span class="glyphicon glyphicon-list-alt"></span>
+            <span class="">我的记录</span>
+          </a>
+        </li>
+        <li routerLinkActive="active">
+          <a routerLink="/addLog">
+            <span class="glyphicon glyphicon-pencil"></span>
+            <span class="">写日志</span>
+          </a>
+        </li>
+        <li routerLinkActive="active">
+          <a routerLink="/addMonthReport">
+            <span class="glyphicon glyphicon-paperclip"></span>
+            <span class="">写月报</span>
+          </a>
+        </li>
+        <li *ngIf="userLevel < 2" routerLinkActive="active">
+          <a routerLink="/userList">
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="">用户列表</span>
+          </a>
+        </li>
+        <li *ngIf="userLevel === 0" routerLinkActive="active">
+          <a routerLink="/departmentList">
+            <span class="glyphicon glyphicon-th-list"></span>
+            <span class="">部门列表</span>
+          </a>
+        </li>
+        <li routerLinkActive="active">
+          <a routerLink="/userInfos">
+            <span class="glyphicon glyphicon-info-sign"></span>
+            <span class="">{{nickName}}</span>
+          </a>
+        </li>
+        <li>
+          <a style="color: #ff6666;" href="javascript:;" (click)="logoutHandle()">
+            <span class="glyphicon glyphicon-log-out"></span>
+            <span>退出登录</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

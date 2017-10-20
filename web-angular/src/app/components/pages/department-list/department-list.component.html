@@ -1,0 +1,47 @@
+<div class="department-list">
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading clearfix">
+      <div class="pull-left">
+        <h3 class="pull-left">部门列表</h3>
+      </div>
+      <div class="pull-right">
+        <a href="javascript:;" class="btn btn-success" title="新增部门" (click)="addDepartment()"><span class="glyphicon glyphicon-plus"></span></a>
+      </div>
+    </div>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th class="index">#</th>
+          <th>名称</th>
+          <th class="text-center handle">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let department of departmentList; let idx = index;">
+          <td>{{idx + 1}}</td>
+          <td>
+            <div *ngIf="currentEdit && currentEdit.id === department.id">
+              <input type="text" name="name_{{currentEdit.id || 'new'}}" [(ngModel)]="currentEdit.name">
+            </div>
+            <div *ngIf="!currentEdit || currentEdit.id !== department.id">
+              {{department.name}}
+            </div>
+          </td>
+          <td class="text-center ">
+            <div *ngIf="currentEdit && currentEdit.id === department.id">
+              <a href="javascript:;" class="btn btn-default" title="保存" (click)="saveEditOrAdd(department)"><span class="glyphicon glyphicon-ok"></span></a>
+              <a href="javascript:;" class="btn btn-warning" title="取消" (click)="cancelEditOrAdd(department)"><span class="glyphicon glyphicon-remove"></span></a>
+            </div>
+            <div *ngIf="!currentEdit || currentEdit.id !== department.id">
+              <a href="javascript:;" class="btn btn-primary" title="编辑" (click)="editDepartment(department)"><span class="glyphicon glyphicon-edit"></span></a>
+              <a href="javascript:;" class="btn btn-danger" title="删除" (click)="deleteDepartment(department)"><span class="glyphicon glyphicon-trash"></span></a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<app-alert #myAlert></app-alert>
+<app-confirm-dialog #myDialog></app-confirm-dialog>

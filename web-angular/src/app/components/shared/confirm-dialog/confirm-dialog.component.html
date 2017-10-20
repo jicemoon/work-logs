@@ -1,0 +1,8 @@
+<app-modal #myModal [showCloseBtn]="options.showCloseBtn" [showHeader]="!!options.title" (onClose)="closeHandle($event)" >
+  <div class="header" [innerHTML]="options.title"></div>
+  <div class="body" [innerHTML]="options.content"></div>
+  <div class="footer">
+    <button type="button" class="btn btn-primary" (click)="confirmHandle()" *ngIf="!!options.okText">{{options.okText}}</button>
+    <button type="button" class="btn btn-default" (click)="cancelHandle()" *ngIf="!!options.cancelText">{{options.cancelText}}</button>
+  </div>
+</app-modal>

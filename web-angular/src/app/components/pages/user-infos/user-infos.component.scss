@@ -1,0 +1,10 @@
+.user-infos{
+  input[readonly] {
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+    cursor: auto;
+  }
+}

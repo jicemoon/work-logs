@@ -1,0 +1,35 @@
+<div class="text-center">
+  <div class="inline-box">
+    <div class="search-box">
+      <div class="search-item">
+        <!-- <div class="btn-group">
+          <button class="btn btn-default dropdown-toggle" type="button" id="searchItemDropDownMenu"
+            data-toggle="dropdown" aria-haspopup="false" aria-expanded="true">
+            <span>{{currentDepartment.name}}</span><i class="caret"></i>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="searchItemDropDownMenu">
+            <li *ngFor="let item of departments" (click)="changeDepartment(item)">{{ item.name }}</li>
+          </ul>
+        </div> -->
+        <app-department-dropdown (onDepartmentChanged)="changeDepartment($event)"></app-department-dropdown>
+      </div>
+      <div class="search-item">
+        <div class="input-group date-picker-container">
+          <span class="input-group-btn">
+            <button style="margin-right:-2px" (click)="changeDate(-1)" class="btn btn-default" type="button">
+              <i class="glyphicon glyphicon-arrow-left"></i><span class="hidden-xs">前一天</span>
+            </button>
+          </span>
+          <input type="text" ngui-datetime-picker (valueChanged)="paramsChangeEmit()" date-format="YYYY-MM-DD" parse-format="YYYY-MM-DD" [date-only]="true" [(ngModel)]="date" readonly class="form-control">
+          <span class="input-group-btn">
+            <button class="btn btn-default" (click)="changeDate(1)" type="button">
+                <i class="glyphicon glyphicon-arrow-right"></i> <span class="hidden-xs">后一天</span>
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-alert #myAlert></app-alert>
+<app-confirm-dialog #myDialog></app-confirm-dialog>

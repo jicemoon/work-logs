@@ -1,0 +1,9 @@
+.add-log {
+  input[name="date"] {
+    max-width: 160px;
+  }
+  textarea {
+    max-width: 100%;
+    line-height: 1.8em;
+  }
+}

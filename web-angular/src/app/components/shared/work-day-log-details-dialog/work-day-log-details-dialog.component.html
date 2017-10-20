@@ -1,0 +1,35 @@
+<app-modal #myModal [showCloseBtn]="true" [showHeader]="true" [showFooter]="showFooter" (onClose)="closeHandle($event)">
+  <div class="header">
+    <div class="log-details-title" *ngIf="options.showHeader">
+      <b>{{currentDetailLog.user.name}}</b>
+      <span *ngIf="!!currentDetailLog.user.department"> / <small>{{currentDetailLog.user.department}}</small></span>
+      <span *ngIf="currentDetailLog.user.title"> / <small>{{currentDetailLog.user.title}}</small></span>
+      (<strong>{{currentDetailLog.date}}</strong>)
+    </div>
+    <div class="log-details-title" *ngIf="!options.showHeader">
+      <strong>{{currentDetailLog.date}}</strong>
+    </div>
+  </div>
+  <div class="body">
+    <div class="details-container">
+      <dl class="dl-horizontal">
+        <dt><strong>今日完成: </strong></dt>
+        <dd>
+          <markdown [data]="currentDetailLog.completed"></markdown>
+        </dd>
+        <dt><strong>明日计划: </strong></dt>
+        <dd>
+          <markdown [data]="currentDetailLog.plan"></markdown>
+        </dd>
+        <dt><strong>工作进度: </strong></dt>
+        <dd>
+          <markdown [data]="currentDetailLog.progress"></markdown>
+        </dd>
+      </dl>
+    </div>
+  </div>
+  <div class="footer">
+    <button type="button" class="btn btn-primary" (click)="confirmHandle()" *ngIf="!!options.okText">{{options.okText}}</button>
+    <button type="button" class="btn btn-default" (click)="cancelHandle()" *ngIf="!!options.cancelText">{{options.cancelText}}</button>
+  </div>
+</app-modal>

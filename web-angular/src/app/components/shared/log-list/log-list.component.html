@@ -1,0 +1,51 @@
+<div class="log-list-container">
+  <div class="row has-log" *ngIf="logList&&logList.length > 0; else noLogTemp">
+    <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let log of logList">
+      <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+          <div class="pull-left">
+            <b>{{log.user.name}}</b>
+            <span *ngIf="!!log.user.department"> / <small>{{log.user.department}}</small></span>
+            <span *ngIf="log.user.title"> / <small>{{log.user.title}}</small></span>
+          </div>
+          <span class="pull-right">{{log.date}}</span>
+        </div>
+        <div class="panel-body">
+          <div class="content">
+            <dl class="dl-horizontal">
+              <dt><strong>今日完成: </strong></dt>
+              <dd>
+                <markdown [data]="log.completed"></markdown>
+              </dd>
+              <dt><strong>明日计划: </strong></dt>
+              <dd>
+                <markdown [data]="log.plan"></markdown>
+              </dd>
+              <dt><strong>工作进度: </strong></dt>
+              <dd>
+                <markdown [data]="log.progress"></markdown>
+              </dd>
+            </dl>
+          </div>
+        </div>
+        <div class="panel-footer clearfix">
+          <div class="pull-left">更新于<span>{{log.updateDate}}</span></div>
+          <div class="pull-right">
+            <button *ngIf="currentUserId === log.user.id" class="btn btn-danger btn-sm" (click)="deleteLog(log)" data-vivaldi-spatnav-clickable="1"><i class="glyphicon glyphicon-trash"></i> </button>
+            <a class="btn btn-default btn-sm" *ngIf="currentUserId === log.user.id" [routerLink]="'/addDayLog/' + log.id"> <i class="glyphicon glyphicon-edit"></i> </a>
+            <button class="btn btn-default btn-sm visible-xs-inline-block"><i class="glyphicon glyphicon-chevron-up"></i> </button>
+            <button class="btn btn-default btn-sm hidden-xs" (click)="showDetails(log)"><i class="glyphicon glyphicon-eye-open"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #noLogTemp>
+    <div class="text-center no-log">
+      该条件下暂无日志!
+    </div>
+  </ng-template>
+</div>
+<app-alert #myAlert></app-alert>
+<app-confirm-dialog #myDialog></app-confirm-dialog>
+<app-work-day-log-details-dialog #dayLogDetails></app-work-day-log-details-dialog>

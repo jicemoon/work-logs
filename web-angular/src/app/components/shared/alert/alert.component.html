@@ -1,0 +1,3 @@
+<div class="toast alert {{alert.type}}" [class.active]="alert.status">
+  <strong *ngIf="!!alert.title">{{alert.title}}!</strong> {{alert.message}}
+</div>

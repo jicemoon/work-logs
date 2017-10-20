@@ -1,0 +1,14 @@
+.details-container {
+  max-height: 400px;
+  overflow-y: auto;
+}
+.dl-horizontal {
+  dt{
+    width: 70px;
+    margin-bottom: 15px;
+  }
+  dd {
+    margin-left: 85px;
+    margin-bottom: 15px;
+  }
+}

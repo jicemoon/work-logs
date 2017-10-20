@@ -1,0 +1,22 @@
+<div class="modal-root" [class.active]="status">
+  <div class="mask" (click)="closeModal()"></div>
+  <div class="my-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" *ngIf="showHeader">
+          <button *ngIf="showCloseBtn" (click)="closeModal()" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <div class="modal-title">
+            <ng-content select=".header"></ng-content>
+          </div>
+        </div>
+        <div class="modal-body">
+          <ng-content select=".body"></ng-content>
+        </div>
+        <div class="modal-footer" *ngIf="showFooter">
+          <ng-content select=".footer"></ng-content>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

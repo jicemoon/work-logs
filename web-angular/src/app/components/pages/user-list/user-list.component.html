@@ -1,0 +1,110 @@
+<div class="user-list">
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading clearfix">
+      <div class="pull-left">
+        <h3 class="pull-left">用户列表</h3>
+      </div>
+      <div class="pull-right">
+        <app-department-dropdown *ngIf="currentUser.level === 0" (onDepartmentChanged)="getUserList($event)"></app-department-dropdown>
+        <a href="javascript:;" class="btn btn-success" title="新增用户" (click)="addOrEditUser()"><span class="glyphicon glyphicon-plus"></span></a>
+      </div>
+    </div>
+    <div *ngIf="userList.length === 0">
+    </div>
+    <table *ngIf="userList.length > 0; else noUserTemp" class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>账号</th>
+          <th>昵称</th>
+          <th>所在部门</th>
+          <th>职称</th>
+          <th>权限</th>
+          <th>状态</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of userList; let idx = index;">
+          <td>{{idx + 1}}</td>
+          <td>{{user.loginName}}</td>
+          <td>{{user.nickname}}</td>
+          <td>{{user.department.name}}</td>
+          <td>{{user.title}}</td>
+          <td>{{userLevels[user.level]}}</td>
+          <td>{{userStatus[user.status]}}</td>
+          <td>
+            <div *ngIf="user.level > currentUser.level">
+              <a href="javascript:;" class="btn btn-primary" title="编辑" (click)="addOrEditUser(user)"><span class="glyphicon glyphicon-edit"></span></a>
+              <a href="javascript:;" class="btn btn-danger" title="删除" (click)="deleteUser(user)"><span class="glyphicon glyphicon-trash"></span></a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <ng-template #noUserTemp>
+      <div class="text-center no-user">
+        该部门(<span class="text-info">{{currentDepartment.name}}</span>)下暂无用户
+      </div>
+    </ng-template>
+  </div>
+</div>
+<app-alert #myAlert></app-alert>
+<app-confirm-dialog #myDialog></app-confirm-dialog>
+<!-- 修改或新增用户时的弹窗 -->
+<app-modal #editOrAddUserModal>
+  <div class="header text-center">{{isEdit ? '修改' : '新增'}}用户</div>
+  <div class="body">
+    <form class="form-horizontal" role="form" [formGroup]="userInfoForm" autocomplete="false" (submit)="submitUserInfo($event)">
+      <div class="form-group">
+        <label class="col-xs-12 col-sm-4 col-md-3 control-label">账号</label>
+        <div class="col-xs-12 col-sm-8 col-md-9">
+          <input type="text" class="form-control" formControlName="loginName" name="loginName" id="loginName" [readonly]="isEdit" placeholder="账号">
+          <div *ngIf="inputInvalid('loginName')" class="alert-danger">
+            账号不能为空, 并且是以字母开头的3-15位字母和数字;
+          </div>
+        </div>
+      </div>
+      <div class="form-group ">
+        <label class="col-xs-12 col-sm-4 col-md-3 control-label">权限</label>
+        <div class="col-xs-12 col-sm-8 col-md-9">
+          <div class="radio radio-inline" *ngFor="let level of levelList">
+            <label>
+              <input type="radio" formControlName="level" name="level" id="level{{level.id}}" [value]="level.id">
+              {{level.name}}
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-xs-12 col-sm-4 col-md-3 control-label">所在部门</label>
+        <div class="col-xs-12 col-sm-8 col-md-9">
+          <span *ngIf="currentUser.level > 0">{{currentUser.department.name}}</span>
+          <div *ngIf="currentUser.level === 0">
+            <select class="form-control" name="department" id="department" formControlName="department">
+              <option value="">请选择所在部门</option>
+              <option *ngFor="let department of departmentList" [value]="department.id">{{department.name}}</option>
+            </select>
+            <div *ngIf="inputInvalid('department')" class="alert-danger">
+              所在部门不能为空
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-xs-12 col-sm-4 col-md-3 control-label">密码</label>
+        <div class="col-xs-12 col-sm-8 col-md-9">
+          <input type="password" class="form-control" formControlName="password" class="form-control" id="password" name="password">
+          <div *ngIf="inputInvalid('password')" class="alert-danger">
+            密码必须为6-18位的字符(至少同时包括数字和字母)
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="footer">
+    <button type="button" (click)="cancelSubmit($event)" class="btn btn-primary"><span class="glyphicon glyphicon-remove"></span>取消</button>
+    <button type="button" (click)="submitUserInfo($event)" [disabled]="userInfoForm.invalid" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span>保存</button>
+  </div>
+</app-modal>

@@ -1,0 +1,35 @@
+.log-list-container {
+  margin-top: 15px;
+  .has-log {
+    .pull-left {
+      max-width: 240px;
+    }
+    .panel-body {
+      .content {
+        height: 125px;
+        overflow: hidden;
+        dt {
+          width: 65px;
+          margin-bottom: 5px;
+        }
+        dd {
+          margin-left: 70px;
+          margin-bottom: 5px;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+    .panel-footer {
+      font-size: 12px;
+      color: #696969;
+      .pull-left {
+        margin-top: 7px;
+      }
+    }
+  }
+  .no-log {
+    font-size: 16px;
+    color: #999999;
+    padding: 4em 0;
+  }
+}

@@ -1,0 +1,47 @@
+<div class="login">
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 text">
+          <div class="description">
+            <p>
+              写工作日志也是一种态度
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+          <div class="form-box">
+            <div class="form-top">
+              <h3>冰月日志</h3>
+            </div>
+            <div class="form-bottom">
+              <form [formGroup]="loginForm" novalidate (submit)="login($event)" autocomplete="false">
+                <div class="form-group">
+                  <label for="loginName" class="sr-only">账号</label>
+                  <input type="text" formControlName="loginName" class="form-control" id="loginName" name="loginName" placeholder="账号" required
+                    [class.error]="inputInvalid('loginName')" />
+                  <div *ngIf="inputInvalid('loginName')" class="alert-danger">
+                    账号不能为空, 并且是以字母开头的3-15位字母和数字;
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="password" class="sr-only">密码</label>
+                  <input type="password" formControlName="password" class="form-control" id="password" name="password" placeholder="密码" required
+                    [class.error]="inputInvalid('password')">
+                  <div *ngIf="inputInvalid('password')" class="alert-danger">
+                    密码必须为6-16位的字符(至少同时包括数字和字母)
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-success" [disabled]="loginForm.invalid">登陆</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="login-bg"></div>
+  <app-alert #myAlert></app-alert>
+</div>

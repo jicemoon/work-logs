@@ -1,0 +1,38 @@
+<div class="add-log">
+  <form (submit)="saveDayLog()">
+    <div class="form-group">
+      <label>日期</label>
+      <input type="text" name="date" ngui-datetime-picker date-format="YYYY-MM-DD" parse-format="YYYY-MM-DD" [date-only]="true"
+        [(ngModel)]="currentLog.date" readonly class="form-control">
+    </div>
+    <hr>
+    <p class="text-warning">提示：下面文本框支持 <a href="http://www.appinn.com/markdown/" target="_blank">Markdown语法</a></p>
+    <div class="form-group">
+      <label>今日完成</label>
+      <div class="text-box">
+        <textarea name="completed" class="form-control" rows="8" [(ngModel)]="currentLog.completed"></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>明日计划</label>
+      <div class="text-box">
+        <textarea name="play" class="form-control" rows="8" [(ngModel)]="currentLog.plan"></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>工作进展</label>
+      <div class="text-box">
+        <textarea name="progress" class="form-control" rows="8" [(ngModel)]="currentLog.progress"></textarea>
+      </div>
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-success">保存</button> &nbsp;&nbsp;&nbsp;
+      <button type="button" class="btn btn-info" (click)="previewDayLog()">预览</button>&nbsp;&nbsp;&nbsp;
+      <button type="button" class="btn btn-danger" (click)="resetInitData()">清空</button> &nbsp;&nbsp;&nbsp;
+      <button type="button" class="btn btn-default" *ngIf="isEdit" (click)="back()">返回</button>
+    </div>
+  </form>
+  <app-alert #myAlert></app-alert>
+  <app-confirm-dialog #myDialog></app-confirm-dialog>
+  <app-work-day-log-details-dialog #dayLogDetails></app-work-day-log-details-dialog>
+</div>

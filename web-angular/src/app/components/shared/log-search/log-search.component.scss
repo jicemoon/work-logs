@@ -1,0 +1,17 @@
+.search-box {
+  display: table;
+  .search-item {
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 5px;
+    button>span {
+      margin-left: 2px;
+    }
+    input[type=text]{
+      text-align: center;
+    }
+  }
+  .search-item:first-child {
+    padding-left: 0;
+  }
+}

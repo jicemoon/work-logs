@@ -9,7 +9,8 @@ import { IDepartmentModel } from '../interface/Idepartment';
 
 ///数据库连接
 const connection = mongoose.createConnection(CONST_PARAMS.MONGO_URI, {
-  useMongoClient: true
+  // useMongoClient: true
+  useNewUrlParser: true
 });
 const UserInfoModel = connection.model<IUserInfoModel>('userInfos', UserInfoSchema);
 const WorkDayLogsModel = connection.model<IWorkDayLogModel>('workDayLogs', WorkDayLogSchema);

@@ -35,7 +35,6 @@ const UserInfoSchema = new mongoose_1.Schema({
                     }
                     return true;
                 },
-                message: '密码必须为6-16位',
             },
             {
                 validator: v => {
@@ -44,7 +43,6 @@ const UserInfoSchema = new mongoose_1.Schema({
                     }
                     return true;
                 },
-                message: '密码不能为纯数字'
             },
             {
                 validator: v => {
@@ -53,7 +51,6 @@ const UserInfoSchema = new mongoose_1.Schema({
                     }
                     return true;
                 },
-                message: '密码不能为纯字母'
             }
         ]
     },
@@ -78,7 +75,6 @@ const UserInfoSchema = new mongoose_1.Schema({
                 validator: v => {
                     return !(/\s+/.test(v));
                 },
-                message: '职称中不能包含空格'
             }
         ]
     },

@@ -66,11 +66,11 @@ export class DBWorkDayLogAPI implements IDBBaseAPI<IWorkDayLogModel> {
    */
   async addWorkDayLog(body: IWorkDayLog): Promise<WorkDayLog> {
     let wdl: IWorkDayLogModel = new WorkDayLogsModel(body);
-    const error = wdl.validateSync();
+    const error = (wdl as any).validateSync();
     if (error) {
       throw error;
     }
-    wdl = await wdl.save();
+    wdl = await (wdl as any).save();
     return wdl ? new WorkDayLog(wdl, false) : null;
   }
   /**

@@ -7,7 +7,8 @@ const userInfo_schema_1 = require("./dbSchema/userInfo.schema");
 const department_schema_1 = require("./dbSchema/department.schema");
 ///数据库连接
 const connection = mongoose.createConnection(main_1.CONST_PARAMS.MONGO_URI, {
-    useMongoClient: true
+    // useMongoClient: true
+    useNewUrlParser: true
 });
 exports.connection = connection;
 const UserInfoModel = connection.model('userInfos', userInfo_schema_1.UserInfoSchema);

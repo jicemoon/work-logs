@@ -20,9 +20,9 @@ const DepartmentSchema = new Schema({
 });
 DepartmentSchema.pre('save', function (next) {
   if (this.isNew) {
-    this.createDate = new Date();
+    (this as any).createDate = new Date();
   }
-  this.updateDate = new Date();
+  (this as any).updateDate = new Date();
   next();
 });
 export { DepartmentSchema };
